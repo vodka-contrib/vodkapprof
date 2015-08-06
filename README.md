@@ -18,13 +18,13 @@ import (
 func main() {
     e := echo.New()
 
-    e.GET("/ping", func(c *echo.Context) {
-        c.String(200, "hello")
+    e.Get("/", func(c *echo.Context) error {
+        return c.String(200, "hello")
     })
 
     // automatically add routers for net/http/pprof
     // e.g. /debug/pprof, /debug/pprof/heap, etc.
-    ginpprof.Wrapper(e)
+    echopprof.Wrapper(e)
 
     e.Run(":8080")
 }
