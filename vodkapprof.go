@@ -6,7 +6,7 @@ import (
 	"github.com/insionng/vodka"
 )
 
-func Wrap(e *vodka.vodka) {
+func Wrap(e *vodka.Vodka) {
 	e.Get("/debug/pprof/", IndexHandler)
 	e.Get("/debug/pprof/heap", HeapHandler)
 	e.Get("/debug/pprof/goroutine", GoroutineHandler)
