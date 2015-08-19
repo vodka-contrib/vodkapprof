@@ -1,30 +1,30 @@
-# echopprof
-A wrapper for golang web framework echo to use net/http/pprof easily.
+# vodkapprof
+A wrapper for golang web framework vodka to use net/http/pprof easily.
 # install
-First install echopprof to your GOPATH using go get:
+First install vodkapprof to your GOPATH using go get:
 ```
-go get github.com/echo-contrib/echopprof
+go get github.com/vodka-contrib/vodkapprof
 ```
 # Usage
 ```
 package main
 
 import (
-    "github.com/labstack/echo"
+    "github.com/insionng/vodka"
 
-    "github.com/echo-contrib/echopprof"
+    "github.com/vodka-contrib/vodkapprof"
 )
 
 func main() {
-    e := echo.New()
+    e := vodka.New()
 
-    e.Get("/", func(c *echo.Context) error {
+    e.Get("/", func(c *vodka.Context) error {
         return c.String(200, "hello")
     })
 
     // automatically add routers for net/http/pprof
     // e.g. /debug/pprof, /debug/pprof/heap, etc.
-    echopprof.Wrapper(e)
+    vodkapprof.Wrapper(e)
 
     e.Run(":8080")
 }
