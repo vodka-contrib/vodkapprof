@@ -1,12 +1,12 @@
-package echopprof
+package vodkapprof
 
 import (
 	"net/http/pprof"
 
-	"github.com/labstack/echo"
+	"github.com/insionng/vodka"
 )
 
-func Wrap(e *echo.Echo) {
+func Wrap(e *vodka.vodka) {
 	e.Get("/debug/pprof/", IndexHandler)
 	e.Get("/debug/pprof/heap", HeapHandler)
 	e.Get("/debug/pprof/goroutine", GoroutineHandler)
@@ -19,42 +19,42 @@ func Wrap(e *echo.Echo) {
 
 var Wrapper = Wrap
 
-func IndexHandler(ctx *echo.Context) error {
+func IndexHandler(ctx *vodka.Context) error {
 	pprof.Index(ctx.Response(), ctx.Request())
 	return nil
 }
 
-func HeapHandler(ctx *echo.Context) error {
+func HeapHandler(ctx *vodka.Context) error {
 	pprof.Handler("heap").ServeHTTP(ctx.Response(), ctx.Request())
 	return nil
 }
 
-func GoroutineHandler(ctx *echo.Context) error {
+func GoroutineHandler(ctx *vodka.Context) error {
 	pprof.Handler("goroutine").ServeHTTP(ctx.Response(), ctx.Request())
 	return nil
 }
 
-func BlockHandler(ctx *echo.Context) error {
+func BlockHandler(ctx *vodka.Context) error {
 	pprof.Handler("block").ServeHTTP(ctx.Response(), ctx.Request())
 	return nil
 }
 
-func ThreadCreateHandler(ctx *echo.Context) error {
+func ThreadCreateHandler(ctx *vodka.Context) error {
 	pprof.Handler("threadcreate").ServeHTTP(ctx.Response(), ctx.Request())
 	return nil
 }
 
-func CmdlineHandler(ctx *echo.Context) error {
+func CmdlineHandler(ctx *vodka.Context) error {
 	pprof.Cmdline(ctx.Response(), ctx.Request())
 	return nil
 }
 
-func ProfileHandler(ctx *echo.Context) error {
+func ProfileHandler(ctx *vodka.Context) error {
 	pprof.Profile(ctx.Response(), ctx.Request())
 	return nil
 }
 
-func SymbolHandler(ctx *echo.Context) error {
+func SymbolHandler(ctx *vodka.Context) error {
 	pprof.Symbol(ctx.Response(), ctx.Request())
 	return nil
 }
