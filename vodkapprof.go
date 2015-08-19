@@ -7,14 +7,14 @@ import (
 )
 
 func Wrap(v *vodka.Vodka) {
-	e.Get("/debug/pprof/", IndexHandler)
-	e.Get("/debug/pprof/heap", HeapHandler)
-	e.Get("/debug/pprof/goroutine", GoroutineHandler)
-	e.Get("/debug/pprof/block", BlockHandler)
-	e.Get("/debug/pprof/threadcreate", ThreadCreateHandler)
-	e.Get("/debug/pprof/cmdline", CmdlineHandler)
-	e.Get("/debug/pprof/profile", ProfileHandler)
-	e.Get("/debug/pprof/symbol", SymbolHandler)
+	v.Get("/debug/pprof/", IndexHandler)
+	v.Get("/debug/pprof/heap", HeapHandler)
+	v.Get("/debug/pprof/goroutine", GoroutineHandler)
+	v.Get("/debug/pprof/block", BlockHandler)
+	v.Get("/debug/pprof/threadcreate", ThreadCreateHandler)
+	v.Get("/debug/pprof/cmdline", CmdlineHandler)
+	v.Get("/debug/pprof/profile", ProfileHandler)
+	v.Get("/debug/pprof/symbol", SymbolHandler)
 }
 
 var Wrapper = Wrap
