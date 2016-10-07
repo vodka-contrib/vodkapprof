@@ -11,22 +11,24 @@ package main
 
 import (
     "github.com/insionng/vodka"
-
+    "github.com/insionng/vodka/engine/standard"
     "github.com/vodka-contrib/vodkapprof"
 )
 
+func hello() vodka.HandlerFunc {
+	return func(c vodka.Context) error {
+		return c.String(200, "Hello, World!\n")
+	}
+}
+
 func main() {
     e := vodka.New()
-
-    e.Get("/", func(c *vodka.Context) error {
-        return c.String(200, "hello")
-    })
+    e.Get("/", hello())
 
     // automatically add routers for net/http/pprof
     // e.g. /debug/pprof, /debug/pprof/heap, etc.
     vodkapprof.Wrapper(e)
-
-    e.Run(":8080")
+    e.Run(standard.New(":8080"))
 }
 ```
 Start this server, and now visit http://127.0.0.1:8080/debug/pprof/ and you'll see what you want.
